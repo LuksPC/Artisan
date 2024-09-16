@@ -4,9 +4,9 @@ Artisan se trata de um projeto feito em aula, que consiste em um sistema de gere
 o mesmo possui conexão com banco de dados de clientes e funcionários, sistema de pedidos de matérias primas e venda de produtos.
 
 **Participantes**:
-**Lucas Pereira Cavalcante**
-**Guilherme Izaac Ferreira**
-**Guilherme Henrique da Costa Nascimento**
+**Lucas Pereira Cavalcante**;
+**Guilherme Izaac Ferreira**;
+**Guilherme Henrique da Costa Nascimento**;
 
 
 <?php
