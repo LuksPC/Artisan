@@ -1,4 +1,4 @@
-# Artisan
+## Artisan
 
 Artisan se trata de um projeto feito em aula, que consiste em um sistema de gerenciamento de estoque de estabelecimentos destinados a artesanato.
 o mesmo possui conexão com banco de dados de clientes e funcionários, sistema de pedidos de matérias primas e venda de produtos.
