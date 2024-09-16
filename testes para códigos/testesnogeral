@@ -1,0 +1,276 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet"  media="(min-width: 601px)" href="cadastro.css">
+    <link rel="stylesheet" media="(max-width: 600px)" href="cadastromedia.css" />
+    <title>Cadastro</title>
+</head>
+
+<body>
+
+    <header class="topo">
+        <a href="..http://artisan.gzaac.com.br">
+            <img src="../assets/Logo.png" alt="Logo" class="logo">
+        </a>
+    </header>
+    
+<br> <br><br>
+    <div class="container">
+    <form id="formSalvar" action='salvar.php' method="POST" enctype = "multipart/form-data" onsubmit>
+            <!-- Campo nome -->
+            <label class="titulo">Nome</label> <br>  
+                <input class="entrada" name='nome_usuario' id="nome_usuario" placeholder="Nome" required> <br>
+            <!-- Campo Endereço -->
+            <label class="titulo">Endereço</label> <br>
+                <input class="entrada" name='endereco_usuario' id="endereco_usuario" placeholder="Endereço" required>  <br>
+            <!-- Campo Telefone -->
+            <label class="titulo">Telefone</label> <br>
+                <input class="entrada" type="tel" maxlength="13"name='telefone_usuario' id="telefone_usuario" placeholder="(00)90000-0000"  onkeydown = "mascara_telefone()" required> <br>
+            <!-- Campo CPF -->
+            <label class="titulo">CPF</label> <br>
+                <input class="entrada"  maxlength="14"name='cpf_usuario' id="cpf_usuario" placeholder="000.000.000-00"  onkeydown = "mascara_cpf()" required > <br>
+            <!-- Campo Data de nascimento -->
+            <label class="titulo">Data de Nascimento</label> <br>
+                <input class="entrada" min="1900-01-01" max="2100-12-31" type="date" name='data_nascimento_usuario' id="data_usuario" placeholder="DD/MM/AAAA" required> <br>
+            <!-- Campo Email -->
+            <label class="titulo">Email</label> <br>
+                <input class="entrada" type="email" max="70" name='email_usuario' id="email_usuario" placeholder="Email" required> <br>
+            <!-- Campo senha -->
+            <label class="titulo">Senha</label>
+                <input class="entrada" type="password" min="5" max="10" name="senha_usuario" id="senha_usuario" placeholder="Senha" required><br>
+            <label class="titulo">Foto do perfil</label>
+                        <input class = "imagem" type = "file" name = " img_usuario"><br>
+
+            <!-- Validação -->
+            <input class="enviar" type=button id="btn" value="Enviar" onclick="fnValidar();">
+        </form> 
+ <script src="/cadastro/cadastro.js"></script>
+</body>
+</html>
+<!-- teste de aprovação de commit -->
+<?php
+//dados do banco
+$servername = "localhost";
+$database = "u553234134_Artisan";
+$username = "u553234134_Gizaac";
+$password = "Gizaac12343124";
+
+// Criação de conexão
+$connection = mysqli_connect($servername, $username, $password, $database);
+
+// Checagem de conexão
+if (!$connection) {
+    die("Connection failed: " . mysqli_connect_error());
+}
+
+// Aplicar criptografia MD5 à senha
+$senhaCriptografada = md5($_POST["senha_usuario"]);
+
+//Comandos de transferencia(PHP - SQL)
+$query = "INSERT INTO usuario (email_usuario, nome_usuario, endereco_usuario, telefone_usuario, cpf_usuario, data_nascimento_usuario, senha_usuario)
+          VALUES ('".$_POST["email_usuario"]."', '".$_POST["nome_usuario"]."', '".$_POST["endereco_usuario"]."', '".$_POST["telefone_usuario"]."', 
+          '".$_POST["cpf_usuario"]."', '".$_POST["data_nascimento_usuario"]."', '".$senhaCriptografada."');";
+
+//Confirmação do salvamento
+echo $query;
+mysqli_query($connection, $query) or die ('Erro ao salvar..');
+echo "Salvo com sucesso";
+
+$query = "SELECT id_usuario, nome_usuario, endereco_usuario, telefone_usuario, cpf_usuario, data_nascimento_usuario, email_usuario, senha_usuario 
+          FROM usuario 
+          WHERE email_usuario = '".$_POST["email_usuario"]."' AND senha_usuario = '".$senhaCriptografada."';";
+
+$resp = mysqli_query($connection, $query) or die ('Erro ao consultar..');
+$_SESSION["logado"] = "nao";
+while ($rowp = mysqli_fetch_array($resp)) {
+    $_SESSION["id_usuario"] = $rowp["id_usuario"];
+};
+?>
+
+<script>
+    window.location = '../home/home.php';
+</script>
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" >
+	<link rel="stylesheet"  media="(min-width: 601px)" href="listar.css">
+    <link rel="stylesheet" media="(max-width: 600px)" href="listarmedia.css" />
+    <title>Cadastro</title>
+</head>
+
+<body>
+<!-- cabeçalho -->
+    <header class="topo">
+
+        <a href="../index.html">
+			<img src="../assets/Logo.png" alt="Logo" class="logo">
+        </a>
+
+    </header>
+    
+<br> <br><br>
+    <div class="container">
+    
+<!-- informações do banco de dados -->
+<?php
+	$servername = "localhost";
+	$database = "u553234134_Artisan";
+	$username = "u553234134_Gizaac";
+	$password = "Gizaac12343124";
+
+// criando a conexão
+	$connection = mysqli_connect($servername, $username, $password, $database);
+
+// checando a conexão
+	if (!$connection) {
+		die("Connection failed: " . mysqli_connect_error());
+	}
+
+//selecionando os campos do banco
+	$query = ' select id_usuario, nome_usuario from usuario ';
+	$resp= mysqli_query($connection,$query) or die ('Erro ao consultar..');
+
+	while ($rowp = mysqli_fetch_array($resp)) {		?>					
+	
+<!-- lista desordenada dos usuarios -->
+	<UL>
+		<li class="lista ">
+		
+		<a href='../atualizar_perfil/atualizarperfil.php?id_usuario=<?php echo $rowp["id_usuario"];  ?>'><label>Editar<label/></a> 
+		<a href='../delete_cliente/delete.php?id_usuario=<?php echo $rowp["id_usuario"];  ?>'><label>Deletar<label/></a> </li><br> <br> 
+	
+		<main>
+        <div class="list">
+            <div class="line">
+                <div class="user">
+                    <div class="profile">
+                        <img src="/assets/user-image.png" alt="" >
+                    </div>
+                    <div class="details">
+                        <h1 class="name"><?php echo $rowp["nome_usuario"]  ?></h1>
+                        <h3 class="username"><?php echo $rowp["id_usuario"]; ?></h3>
+                    </div>
+                </div>
+                <div class="status">
+                    <span></span>
+                    <p>Ativo</p>
+                </div>
+                <div class="location">
+                    <p>Brasília</p>
+                </div>
+                <div class="phone">
+                    <p><?php echo $rowp["telefone_usuario"]; ?></p>
+                </div>
+                <div class="contact">
+                    <a href="mailto:<?php echo $rowp["email_usuario"]  ?>" class="btn">Contact</a>
+                </div>
+                <div class="action">
+					
+					<div>
+                        <summary class="icon">
+                            <span></span>
+                            <span></span>
+                            <span></span>
+
+                            <div id="myDropdown2" class="dropdown-content">
+                            <a href="#home">Home</a>
+                            <a href="#about">About</a>
+                            <a href="#contact">Contact</a>
+						</summary>
+					</div>
+				
+            </div>
+        </div>
+    </main>
+	</UL>
+	
+
+	<?php 
+	};
+?>
+
+    </form> 
+ <!-- <script src="/cadastro/cadastro.js"></script> -->
+ <script src="/listar.js"></script>
+</body>
+</html>
+<?php session_start(); ?>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="atualizar.css">
+    <title>Cadastro</title>
+</head>
+
+<body>
+
+<header class="topo"><img src="../assets/Logo.png" alt="Logo" class="logo">
+    <a href="../index.html">
+        <button class="voltar">Voltar</button>
+    </a>
+</header>
+
+<?php
+// Database Info
+$servername = "localhost";
+$database = "u553234134_Artisan";
+$username = "u553234134_Gizaac";
+$password = "Gizaac12343124";
+
+// Create connection
+$connection = mysqli_connect($servername, $username, $password, $database);
+if (!$connection) {
+    die("Connection failed: " . mysqli_connect_error());
+}
+
+// Seleção de campos
+$query = "SELECT id_usuario, nome_usuario, endereco_usuario, telefone_usuario, cpf_usuario, data_nascimento_usuario, email_usuario, senha_usuario, tipo_usuario
+FROM usuario
+WHERE email_usuario = '" . $_POST["Email_Cliente"] . "' AND senha_usuario = '" . md5($_POST["Senha_Cliente"]) . "'";
+$resp = mysqli_query($connection, $query) or die('Erro ao consultar..');
+
+$_SESSION["logado"] = "nao";
+while ($rowp = mysqli_fetch_array($resp)) {
+    $_SESSION["Id_Cliente"] = $rowp["id_usuario"];
+    $logado = "sim";
+?>
+
+    Logado com sucesso:<?php echo $rowp["nome_usuario"]; ?>
+
+<?php
+if ($logado != "sim") {
+    ?>
+    <script>
+        alert('Usuário ou senha inválidos.');
+        window.location = '../login/login.html';
+    </script>
+    <?php
+} else {
+    $_SESSION["logado"] = "sim";
+    ?>
+    <script>
+        alert('Usuário logado com sucesso.');
+        window.location = '../listar_usuarios/listarUsuarios.php';
+    </script>
+    <?php
+}
+
+
+            <p>Serviços</p>
+            <p>Produtos</p>
+            <img src="./assets/Logo.png" alt="Logo" class="logo">
+            <p>Equipe</p>
+            <p>Contato</p>
+            <a href="/login/login.html" id="entrar">
+            <button onClick = "window.location ='./login/login.html';" class="login">Entrar</button>

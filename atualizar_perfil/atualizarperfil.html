@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="atualizar.css">
+    <title>Atualizar cadastro</title>
+</head>
+
+<body>
+
+    <header class="topo"><img src="../assets/Logo.png" alt="Logo" class="logo">
+        <a href="../perfil.html">
+            <button class="voltar">Voltar</button>
+        </a>
+    </header>
+    
+<br> <br><br>
+    <div class="container">
+<form id="formSalvar" action='update.php' method="GET" onsubmit>
+    <!-- Campo nome -->
+    <label class="titulo">Nome</label> <br>  
+        <input class="entrada" name='Nome_Cliente' id="Nome_Cliente_Atualizado" placeholder="Nome" required> <br>
+    <!-- Campo Endereço -->
+    <label class="titulo">Endereço</label> <br>
+        <input class="entrada" name='Endereco_Cliente' id="Endereco_Cliente_Atualizado" placeholder="Endereço" required>  <br>
+    <!-- Campo Telefone -->
+    <label class="titulo">Telefone</label> <br>
+        <input class="entrada" type="tel" max="11"name='Telefone_Cliente_Atualizado' id="Telefone_Cliente" placeholder="(00)90000-0000" required> <br>
+    <!-- Campo CPF -->
+    <label class="titulo">CPF</label> <br>
+        <input class="entrada" min="11" max="11"name='Cpf_Cliente' id="CPF_Cliente_Atualizado" placeholder="000.000.000-00" required > <br>
+    <!-- Campo Data de nascimento -->
+    <label class="titulo">Data de Nascimento</label> <br>
+        <input class="entrada" min="1900-01-01" max="2050-12-31" type="date" name='Data_Nascimento_Cliente' id="Data_Cliente_Atualizado" placeholder="DD/MM/AAAA" required> <br>
+    <!-- Campo Email -->
+    <label class="titulo">Email</label> <br>
+        <input class="entrada" type="email" max="70" name='Email_Cliente' id="Email_Cliente_Atualizado" placeholder="Email" required> <br>
+    <!-- Campo senha -->
+    <label class="titulo">Senha</label>
+        <input hidden class="entrada" type="password" min="5" max="10" name="Senha_Cliente" id="Senha_cliente_Atualizado" placeholder="Senha" required ><br>
+        </form>
+    </div>
+
+<input class="enviar" type=button value="Enviar" onclick="fnValidar();">
+
+</form> 
+ <script src="/atualizar_perfil/atualizar.js"></script>
+</body>
+</html>
