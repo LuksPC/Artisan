@@ -25,28 +25,6 @@ Um sistema de **gerenciamento de estoque para estabelecimentos de artesanato**, 
 
 ---
 
-## Estrutura do Repositório
-
-```
-/
-├── assets/                   # Imagens, logotipos e outros recursos visuais
-├── login/                    # Páginas e scripts de autenticação
-├── cadastro/                 # Registros de clientes e vendedores
-├── carrinho/                 # Lógica e páginas do carrinho de compras
-├── produtos/                 # Gerenciamento e visualização de produtos
-├── clientes/                 # CRUD de clientes
-├── listar_usuarios/          # Visualização de usuários cadastrados
-├── notificacao_email/        # Scripts de envio de e-mail
-├── perfil_usuario/           # Perfis individuais dos usuários
-├── index.html & index.js     # Página inicial e scripts gerais
-├── indexDesktop.css          # CSS para layout desktop
-├── indexMobile.css           # CSS para layout mobile
-├── produtoss.php             # Manipulação de produtos no backend
-└── readme.md                 # Documentação do projeto atual
-```
-
----
-
 ## Instalação
 
 1. Clone o repositório:
