@@ -1,10 +1,10 @@
-# Artisan 🧶
+# Artisan 
 
-Um sistema de **gerenciamento de estoque para estabelecimentos de artesanato**, desenvolvido no ambiente acadêmico como projeto de turma.
+Um sistema de **gerenciamento de estoque para estabelecimentos de artesanato**, desenvolvido no ambiente acadêmico como projeto de TCC.
 
 ---
 
-## ✅ Funcionalidades Principais
+## Funcionalidades Principais
 
 - **Cadastro de usuários:** Clientes e funcionários podem registrar-se e autenticar-se.
 - **Gerenciamento de estoque:** Inclusão, edição, listagem e exclusão de produtos.
@@ -16,16 +16,17 @@ Um sistema de **gerenciamento de estoque para estabelecimentos de artesanato**, 
 
 ---
 
-## 💪 Tecnologias Utilizadas
+## Tecnologias Utilizadas
 
 - **PHP** para backend e lógica de negócio
 - **MySQL** como banco de dados relacional
 - **HTML**, **CSS** (versões mobile e desktop) e **JavaScript** para a interface
 - Estruturação modular com pastas dedicadas para funcionalidades
+- **SQL**
 
 ---
 
-## 📂 Estrutura do Repositório
+## Estrutura do Repositório
 
 ```
 /
@@ -47,7 +48,7 @@ Um sistema de **gerenciamento de estoque para estabelecimentos de artesanato**, 
 
 ---
 
-## 🚀 Instalação
+## Instalação
 
 1. Clone o repositório:
    ```bash
@@ -67,7 +68,7 @@ Um sistema de **gerenciamento de estoque para estabelecimentos de artesanato**, 
 
 ---
 
-## 🗺 Uso
+## Uso
 
 - **Registrar →** efetuar cadastro como cliente ou vendedor.
 - **Login →** acessar conta e visualizar opções conforme o papel (cliente, vendedor, admin).
@@ -77,7 +78,7 @@ Um sistema de **gerenciamento de estoque para estabelecimentos de artesanato**, 
 
 ---
 
-## 🧩 Detalhes Técnicos
+## Detalhes Técnicos
 
 - **Conexão com MySQL:** cada script contém segmentação via `mysqli_connect`, com tratamento básico de erros.
 - **Sessões PHP:** usadas para identificar usuário logado e controlar acesso.
@@ -85,35 +86,11 @@ Um sistema de **gerenciamento de estoque para estabelecimentos de artesanato**, 
 
 ---
 
-## 👥 Equipe de Desenvolvimento
+## Equipe de Desenvolvimento
 
 - Lucas Pereira Cavalcante
 - Guilherme Izaac Ferreira
 - Guilherme Henrique da Costa Nascimento
 
 ---
-
-## 💡 Melhoria e Próximos Passos
-
-- Centralizar configuração do banco em arquivo `.env`.
-- Implementar verificação ampliada de segurança (SQL injection, hashing de senha, validação de formulários).
-- Modularização com rotas e controlador MVC.
-- Interface moderna com frameworks frontend (Vue, React ou Bootstrap).
-- Logs avançados e rastreamento de erros.
-
----
-
-## 📄 Licença
-
-Documento `LICENSE` não está incluído — recomenda-se selecionar uma licença (ex: MIT, GPL) e adicioná-la ao projeto.
-
----
-
-## 📞 Contato
-
-Para dúvidas ou contribuições, abra uma **issue** no GitHub ou entre em contato com os autores.
-
----
-
-**Observação:** o SQL de criação de tabelas e esquema do banco deve ser adicionado; é recomendado incluir um arquivo `schema.sql` no repositório para facilitar a configuração.
 
