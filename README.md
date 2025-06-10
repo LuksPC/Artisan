@@ -19,10 +19,9 @@ Um sistema de **gerenciamento de estoque para estabelecimentos de artesanato**, 
 ## Tecnologias Utilizadas
 
 - **PHP** para backend e lógica de negócio
-- **MySQL** como banco de dados relacional
+- **SQL**, **MySQL** como banco de dados relacional
 - **HTML**, **CSS** (versões mobile e desktop) e **JavaScript** para a interface
 - Estruturação modular com pastas dedicadas para funcionalidades
-- **SQL**
 
 ---
 
